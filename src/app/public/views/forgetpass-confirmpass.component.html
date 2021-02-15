@@ -1,0 +1,40 @@
+
+<div class="wrapper-page top-section">
+  <div class="card overflow-hidden account-card mx-3">
+    <div class="bg-primary p-4 text-white text-center position-relative">
+      <h4 class="font-20 m-b-5">Forget password</h4>
+      <p class="text-white-50 mb-4">Get your Hagglr account credentials.</p>
+      <a routerLink="/public2" class="logo logo-admin"><img src="assets/images/fav-logo.png" height="40" alt="logo"></a>
+    </div>
+    <div class="account-card-content">
+      <ngb-alert *ngIf="alert.type!=''" [type]="alert.type" (close)="alert = ''">{{ alert.message }}</ngb-alert>
+      <form class="form-horizontal m-t-30"
+        method="post">
+        <div class="form-group">
+          <label for="username">Password</label>
+          <input type="text" class="form-control" name="password" placeholder="Enter password"
+            formControlName="password" autocomplete="off" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Please provide a valid password.
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="username">Confirm password</label>
+          <input type="text" class="form-control" name="confirmpass"
+            formControlName="confirmpass" autocomplete="off" [ngClass]="{ 'is-invalid': submitted && f.confirmpass.errors }">
+          <div *ngIf="submitted && f.confirmpass.errors" class="invalid-feedback">            
+             <div *ngIf="f.confirmpass.errors">Please provide a valid confirm password.
+            </div> 
+          </div>
+        </div>
+        <div class="form-group row m-t-20">
+          <div class="col-sm-12 text-right">
+            <button class="btn btn-primary w-md waves-effect waves-light" style="width: 100%;"
+              type="submit">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

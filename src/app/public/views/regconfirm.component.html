@@ -1,0 +1,17 @@
+<div class="wrapper-page" style="max-width: 600px;margin-top: 35px;margin-bottom: 0;">
+    <div class="card overflow-hidden account-card mx-3" style="margin-bottom:0px;">
+        <div class="bg-primary p-4 text-white text-center position-relative">
+            <h4 class="font-20 m-b-5">Your registration is complete</h4>
+            <p class="text-white-50 mb-4">Thank you.</p>
+            <a routerLink="/public" class="logo logo-admin"><img src="assets/images/fav-logo.png" height="40" alt="logo"></a>
+        </div>
+        <div class="account-card-content pb-4 mb-4">
+            <h5>Account Confirmation</h5>
+            <br/>
+            <p>You have confirmed your email address and successfully activated your account. You may proceed to complete your profile before creating the deals.</p>
+            <br/>
+            <br/>
+            <p *ngIf="countDown">Stay Tight! we will take you profile page in {{countDown}}.</p>
+        </div>
+    </div>
+</div>

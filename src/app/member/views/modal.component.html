@@ -1,0 +1,39 @@
+<div class="modal-header">
+  <h4 class="modal-title">View Deal Details</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <ngb-alert *ngIf="alert.type !=''" [type]="alert.type" (close)="alert.type =''">
+    {{ alert.message }}
+  </ngb-alert>
+  <div *ngIf="!dealDetail">Loading ...</div>
+  <div *ngIf="dealDetail">
+    <div class="row">
+      <div class="col-md-auto">
+        <div class="img-thumbnail dealsDetailImage">
+          <img *ngIf="imageURL" [src]="imageURL" class="img-fluid " />
+        </div>
+      </div>
+      <div class="col dealDetailCard">
+        <div class="title">{{dealDetail.name}}</div>
+        <div class="callout">{{dealCallout}}</div>
+        <div class="duration">{{dayDetail}} from <span class='hgl'>{{dealDetail.fromdate | date:'mediumDate'}}</span> to <span class='hgl'>{{dealDetail.todate | date:'mediumDate'}}</span></div>
+        <div class="content-section">{{dealDetail.description | capitalize}}</div>
+        <div class="row m-0 mt-2">
+          <div class="col-md-6 pl-0">
+            <label>Minimum Purchase:</label>
+            {{dealDetail.minpurchase}}
+          </div>
+          <div class="col-md-6">
+            <label>Total Coupons:</label>
+            {{dealDetail.couponlimit}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+  </div>

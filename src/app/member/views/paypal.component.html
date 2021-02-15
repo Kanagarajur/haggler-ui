@@ -1,0 +1,43 @@
+<div id="wrapper" style="overflow: auto;">
+    <member-header></member-header>
+    <div class="container-fluid">
+        <div class="page-title-box">
+            <div class="row align-items-center">
+                <div class="col-sm-6">
+                    <h4 class="page-title">Subscription</h4>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/member/dashboard">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a routerLink="/member/profile">Profile</a></li>
+						<li class="breadcrumb-item"><a routerLink="/member/subscription">Subscription</a></li>
+                        <li class="breadcrumb-item active">Paypal Payment</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid text-center">
+
+        <div class="card directory-card profile-form" style="margin: 35px;">
+            <div class="card-body">
+				<div><h3 class="head-title" style="color: #0389DD;">Pay with Paypal - Faster. Safer. Easier.</h3></div>
+				<div style="padding: 0 0 30px 0;" style="color: #0389DD;">You will not be charged until the trial period. You can cancel anytime!!!</div>
+				<div style="padding: 0 0 30px 0;">Please click below to select the type of Paypal account or card you wish to use</div>
+
+                <div class="row col-md-12 align-items-center justify-content-center" style="vertical-align: middle;">
+                    <div class="col"> 
+                        <div id="ppdiv" #paypal></div>
+                    </div>
+					</div>
+				<div class="row col-md-12 align-items-center justify-content-center" style="vertical-align: middle;">
+					<div class="col"> 
+                        <img src="assets/images/Secure-Paypal-Checkout-Logo.jpg" alt="" style="width: 505px;"	>
+                    </div>
+                </div>
+                <div>
+                    <h1>{{paymentStatus}}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <member-footer></member-footer>
+</div>

@@ -1,0 +1,51 @@
+  .dealpreview-bg
+  {
+    border-radius: 0 20px 20px 0!important;
+  }
+  .dealpreview-content-center{
+    text-align: center;
+  }
+  .dealpreview-resturant-img
+  {
+   background: #e6e6e6;
+    border-radius:20px 20px 0 0 ;
+    padding: 30px 0;
+  }
+  .dealpreview-button-style
+  {
+    background:#e6e6e6;
+    padding: 20px 10px;
+    margin: 10px 5px;
+    text-align: center;
+    border-radius: 20px!important;
+  }
+  .dealpreview-deal-img
+  {
+    margin-top: 60px;
+  }
+  .dealpreview-deal-percent
+  {
+    padding-left: 75px;
+    text-align: left;
+    margin: 0!important;
+    color: black;
+    font-weight: bold;
+  }
+  .dealpreview-deal-desc h4  {
+    padding: 0;
+    margin: 0;
+  }
+  .dealpreview-deal-desc
+  {
+    padding-left: 75px;
+    text-align: left;
+    font-weight: lighter;
+  }
+  .dealpreview-getthisdeal
+  {
+    margin-top: 30px;
+  }
+  h5{
+    text-shadow: none;
+    color: black;
+  }

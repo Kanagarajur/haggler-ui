@@ -1,0 +1,42 @@
+<div class="dealpreview-bg">
+    <div class="modal-body">
+        <div class="container">
+            <div class="row dealpreview-content-center">
+				<div class="col-md-12">
+                    <h5>This is how customers sees on the chatbot!!!</h5>
+                </div>
+                <div class="col-md-12 dealpreview-resturant-img">
+                    <img [src]="dealpreviewDetails.restaurantImg" onerror="this.src='assets/images/defbus.png'" alt=""
+                        width="300px">
+                </div>
+                <div class="col-md-12">
+                    <h5>{{dealpreviewDetails.restaurantName}}</h5>
+                </div>
+                <div class="col-md-12">
+                    <h5 class="dealpreview-button-style"><a href="{{dealpreviewDetails.restaurantURL}}"
+                            target="_blank">{{dealpreviewDetails.restaurantURL}}</a> </h5>
+                </div>
+                <div class="col-md-12" (click)="showDealDetails()">
+                    <h5 class="dealpreview-button-style">{{dealpreviewDetails.restaurantDeals}}</h5>
+                </div>
+                <div class="col-md-12">
+                    <h5 class="dealpreview-button-style">{{dealpreviewDetails.restaurantPhoneNo}}</h5>
+                </div>
+                <div class="col-md-12 dealpreview-deal-img" *ngIf="showDeal"> <img
+                        [src]="dealpreviewDetails.restaurantOfferImg" onerror="this.src='assets/images/defbus.png'"
+                        alt="" width="300px"></div>
+                <div class="col-md-12 dealpreview-deal-percent" *ngIf="showDeal">
+                    <h5>{{dealpreviewDetails.restaurantOfferPercent}}</h5>
+                </div>
+                <div class="col-md-12 dealpreview-deal-desc" *ngIf="showDeal">
+                    <h5>{{dealpreviewDetails.restaurantOfferDesc}}</h5>
+                </div>
+                <div class="col-md-12 dealpreview-getthisdeal" *ngIf="showDeal">
+                    <h5 class="dealpreview-button-style">Get this deal</h5>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+        </div>
+    </div>

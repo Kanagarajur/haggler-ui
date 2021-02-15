@@ -1,0 +1,284 @@
+<div id="wrapper" style="overflow: auto;">
+    <member-header></member-header>
+    <div class="content-page">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="page-title-box">
+                    <div class="row align-items-center">
+                        <div class="col-sm-6">
+                            <h4 class="page-title">Add Deal Builder</h4>
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a routerLink="/member/dashboard">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a routerLink="/member/dealbuilder">Deal Builder</a></li>
+                                <li class="breadcrumb-item active">New Deal</li>
+                            </ol>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="float-right d-md-block">
+                                <a class="btn btn-primary add-btn add-btnarrow-none waves-effect waves-light"
+                                    data-toggle="tooltip" data-placement="bottom" title=""
+                                    data-original-title="Add Deal Builder" routerLink="/member/dealbuilder"><i
+                                        class="fa fa-list mr-2"></i> List</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <form id="form-horizontal" class="form-horizontal form-wizard-wrapper"
+                                    [formGroup]="dealForm" (ngSubmit)="onFirstSubmit()">
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="dealname">Deal Name</label>
+                                                <input type="text" class="form-control" formControlName="dealName"
+                                                    id="dealname" name="dealname"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.dealName.errors }">
+                                                <div *ngIf="submitted && f.dealName.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.dealName.errors.required">Please provide a valid name.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="combo_select">Deal Type</label>
+                                                <select class="form-control p-1" formControlName="dealType"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.dealType.errors }">
+                                                    <option value="" disabled selected>select</option>
+                                                    <option value="Dollar">Dollar</option>
+                                                    <option value="Percentage">Percentage</option>
+                                                    <option value="Custom Deal">Custom Deal</option>
+                                                </select>
+                                                <div *ngIf="submitted && f.dealType.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.dealType.errors.required">Please select the deal type.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="Discount">Discount</label>
+                                                <input id="Discount" name="Discount" type="text" class="form-control"
+                                                    formControlName="dollarDiscount"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.dollarDiscount.errors }">
+                                                <div *ngIf="submitted && f.dollarDiscount.errors"
+                                                    class="invalid-feedback">
+                                                    <div *ngIf="f.dollarDiscount.errors.required">Please provide a valid
+                                                        value.</div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="Description">Description</label>
+                                                <textarea name="Discription" formControlName="dealDescription" rows="2"
+                                                    class="form-control" maxlength="200"></textarea>
+                                                    <span style="color:red;    font-size: 11px;">
+                                                        Maximum 200 characters 
+                                                  </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="MinimumPurchase">Minimum Purchase</label>
+                                                <input id="MinimumPurchase" name="MinimumPurchase" type="text"
+                                                    formControlName="minimumPurchase" class="form-control">
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="Coupons">Total Coupons</label>
+                                                <input id="Coupons" name="Coupons" type="text" class="form-control"
+                                                    formControlName="totalCoupons"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.totalCoupons.errors }">
+                                                <div *ngIf="submitted && f.totalCoupons.errors"
+                                                    class="invalid-feedback">
+                                                    <div *ngIf="f.totalCoupons.errors.required">Please provide a valid
+                                                        value.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="start_date">Duration Date & Time</label>
+                                                <div class="input-group">
+                                                    <input name="datefrom" type="text" class="form-control datepicker"
+                                                        id="start_date">
+                                                    <div class="input-group-append clndr-icon"><span
+                                                            class="input-group-text"><i
+                                                                class="fa fa-calendar-alt"></i></span></div>
+                                                </div>
+                                                <dl-date-time-picker startView="day" maxView="year" minView="minute"
+                                                    minuteStep="5" [(ngModel)]="selectedDate">
+                                                </dl-date-time-picker>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="end_date">End Date & Time</label>
+                                                <div class="input-group">
+                                                    <input name="dateto" type="text" class="form-control datepicker"
+                                                        id="end_date">
+                                                    <div class="input-group-append clndr-icon"><span
+                                                            class="input-group-text"><i
+                                                                class="fa fa-calendar-alt"></i></span></div>
+                                                </div>
+                                            </div>
+                                        </div -->
+                                        <div class="col-md-4"></div>
+                                        <div class="col-md-3">
+                                            <div class="form-group hidden">
+                                                <div class="input-group">
+                                                    <input name="datepicker" class="form-control hdn-control"
+                                                        ngbDatepicker #datepicker="ngbDatepicker" [positionTarget]="dpPosition"
+                                                        [autoClose]="'outside'" (dateSelect)="onDateSelection($event)"
+                                                        [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden"
+                                                        [startDate]="fromDate!">
+                                                    <ng-template #t let-date let-focused="focused">
+                                                        <span class="custom-day" [class.focused]="focused"
+                                                            [class.range]="isRange(date)"
+                                                            [class.faded]="isHovered(date) || isInside(date)"
+                                                            (mouseenter)="hoveredDate = date"
+                                                            (mouseleave)="hoveredDate = date">
+                                                            {{ date.day }}
+                                                        </span>
+                                                    </ng-template>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="dateDuration">Start Date</label>
+                                                <div #dpPosition class="input-group mt34">
+                                                    <input #dpFromDate class="form-control" placeholder="yyyy-mm-dd"
+                                                        name="dpFromDate" [value]="formatter.format(fromDate)"
+                                                        (input)!="fromDate = validateInput(fromDate, dpFromDate.value)">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="dateDuration">End Date</label>
+                                            <div class="input-group mt34">
+                                                <input #dpToDate class="form-control" placeholder="yyyy-mm-dd"
+                                                    name="dpToDate" [value]="formatter.format(toDate)"
+                                                    (input)!="toDate = validateInput(toDate, dpToDate.value)">
+                                                <div class="input-group-append" style="margin-left: 35px;">
+                                                    <button class="btn btn-outline-secondary fa fa-calendar"
+                                                        (click)="datepicker.toggle()" type="button"></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="dateDuration">Duration</label>
+                                                <div class="input-group">
+                                                    <ngb-datepicker #dp (select)="onDateSelection($event)"
+                                                        id="dateDuration" [displayMonths]="2" [dayTemplate]="t"
+                                                        outsideDays="hidden">
+                                                    </ngb-datepicker>
+
+                                                    <ng-template #t let-date let-focused="focused">
+                                                        <span class="custom-day" [class.focused]="focused"
+                                                            [class.range]="isRange(date)"
+                                                            [class.faded]="isHovered(date) || isInside(date)"
+                                                            (mouseenter)="hoveredDate = date"
+                                                            (mouseleave)="hoveredDate = null">
+                                                            {{ date.day }}
+                                                        </span>
+                                                    </ng-template>
+                                                </div>
+                                            </div>
+                                        </div -->
+                                        <div class="col-md-2">
+                                            <label for="fromTime">From Time</label>
+                                            <div class="input-group">
+                                                <ngb-timepicker id="fromTime" formControlName="fromTime" [minuteStep]="15"
+                                                    [meridian]="true"></ngb-timepicker>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="toTime">To Time</label>
+                                            <div class="input-group">
+                                                <ngb-timepicker id="toTime" formControlName="toTime" [minuteStep]="15"
+                                                    [meridian]="true"></ngb-timepicker>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Day</label><br>
+                                                <div class="custom-control custom-checkbox"
+                                                    *ngFor="let day of dealForm.controls.days['controls']; let i=index;"
+                                                    style="display: inline-block;width: 13%;margin-top: 6px;">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        [id]="weekdays[i].name" [formControl]="day">
+                                                    <label class="custom-control-label"
+                                                        [for]="weekdays[i].name">{{weekdays[i].slug}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="fileup">Upload Image</label>
+                                                <div class="form-group">
+                                                    <input id="fileup" type="file" class="filestyle"
+                                                        (change)="onFileChange($event)" data-buttonname="btn-secondary">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="Disclaimer">Disclaimer</label>
+                                                <textarea name="Disclaimer" formControlName="disclaimer" rows="2"
+                                                    class="form-control" maxlength="200"></textarea>
+                                                    <span style="color:red;    font-size: 11px;">
+                                                        Maximum 200 characters 
+                                                  </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="float-center">
+                                            <a data-toggle="tooltip" data-placement="top" title=""
+                                                data-original-title="Edit" role="button" 
+                                                class="btn btn-primary waves-effect waves-light mr-1"
+                                                (click)="goPreview(dealForm)">Preview</a>
+                                            <!-- <button type="submit"
+                                                class="btn btn-primary waves-effect waves-light mr-1">Submit</button>
+                                            <button type="reset" (click)="goback();"
+                                                class="btn btn-secondary waves-effect">Cancel</button> -->
+												<button type="submit" class="btn btn-primary waves-effect waves-light mr-1">
+                                                {{ (PaymentID == null || PaymentID=='')  ? 'Submit & Subscribe' : 'Submit' }}</button>
+                                            <button type="reset" (click)="goback();"
+                                                class="btn btn-secondary waves-effect">Cancel</button>
+                                            <!-- <div *ngIf="PaymentID!='' && PaymentID!=null" style="padding-top:15px;">
+                                                <div class="clear"></div>
+                                                <a (click)="goCancel()"
+                                                    style="color: #b1b1bb;text-decoration: underline;cursor: pointer;">cancel
+                                                    paypal
+                                                    subscription</a>
+                                            </div>  -->
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

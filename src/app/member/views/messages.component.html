@@ -1,0 +1,125 @@
+<div id="wrapper">
+    <member-header></member-header>
+    <div class="bg-light">
+        <div class="content-page">
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="page-title-box">
+                        <div class="row align-items-center">
+                            <div class="col-sm-6">
+                                <h4 class="page-title">Leads</h4>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="javascript:void(0);">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">Leads</li>
+                                </ol>
+                            </div>
+                            <!-- <div class="col-sm-6">
+                                <div class="float-right d-md-block">
+                                    <a class="btn btn-primary add-btn add-btnarrow-none waves-effect waves-light"
+                                        data-toggle="tooltip" data-placement="bottom" title=""
+                                        data-original-title="Add Deal Builder" href="javascript:;"
+                                        (click)="gotoNewDeal()"><i class="fa fa-plus mr-2"></i> Add</a>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <ngb-alert *ngIf="alert.type !=''" [type]="alert.type" (close)="alert.type =''">
+                                {{ alert.message }}
+                            </ngb-alert>
+                            <div class="card">
+                                <div class="card-body">
+                                    <!-- <div class="row m-0">
+                                        <div class="col-auto mr-auto p-0">
+                                            <h4 class="mt-0 header-title">Deal Builders List</h4>
+                                        </div>
+                                        <div class="col-auto font-12 p-0">Active Deals : {{activeDeals}}</div>
+                                    </div> -->
+                                    <ngb-alert *ngIf="messages.length == 0" type="warning">No messages found</ngb-alert>
+                                    <table id="datatable-buttons" *ngIf="messages.length > 0"
+                                        class="table table-striped table-bordered dt-responsive nowrap"
+                                        style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th class="cursor-pointer" (click)="sortData('firstName')">First Name <i
+                                                        class="fas ml-2"
+                                                        [ngClass]="(sortBy ==='name' ? sortDirClass : 'fa-sort')"></i>
+                                                </th>
+                                                <th class="cursor-pointer" (click)="sortData('lastName')">Last Name <i
+                                                        class="fas ml-2"
+                                                        [ngClass]="(sortBy ==='dealType' ? sortDirClass : 'fa-sort')"></i>
+                                                </th>
+                                                <th class="cursor-pointer" (click)="sortData('phoneNumber')">Phone Number
+                                                    <i class="fas ml-2"
+                                                        [ngClass]="(sortBy ==='todate' ? sortDirClass : 'fa-sort')"></i>
+                                                </th>
+                                                <th class="cursor-pointer" (click)="sortData('description')">Description
+                                                    <i class="fas ml-2"
+                                                        [ngClass]="(sortBy ==='dealstatus' ? sortDirClass : 'fa-sort')"></i>
+                                                </th>
+                                                <th class="cursor-pointer" (click)="sortData('emailAddress')">Email
+                                                    Address
+                                                    <i class="fas ml-2"
+                                                        [ngClass]="(sortBy ==='dealstatus' ? sortDirClass : 'fa-sort')"></i>
+                                                </th>
+                                                <th class="cursor-pointer" (click)="sortData('comments')">Comments
+                                                    <i class="fas ml-2"
+                                                        [ngClass]="(sortBy ==='dealstatus' ? sortDirClass : 'fa-sort')"></i>
+                                                </th>
+                                                <th class="cursor-pointer" (click)="sortData('status')">Open/ Close
+                                                    <i class="fas ml-2"
+                                                        [ngClass]="(sortBy ==='couponlimit' ? sortDirClass : 'fa-sort')"></i>
+                                                </th>
+                                                <th width="10%">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let message of messages; let i = index">
+                                                <td>{{message.firstName}}</td>
+                                                <td>{{message.lastName}}</td>
+                                                <td>{{message.phoneNumber}}</td>
+                                                <td>{{message.description}}</td>
+                                                <td>{{message.emailAddress}}</td>
+                                                <td>{{message.comments}}</td>
+                                                <td>
+                                                    <!-- <label class="badge badge-info">{{message.status}}</label> -->
+                                                    <div class="custom-control custom-switch text-center">
+                                                        <input type="checkbox" class="custom-control-input pointer" (click)="toggleStatus(message.id,message.status,message.comments,i)"
+                                                            [id]="'customSwitch'+i" [checked]="message.status === 'Active'">
+                                                        <label class="custom-control-label" [for]="'customSwitch'+i"></label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a data-toggle="tooltip" data-placement="top" title=""
+                                                        data-original-title="Edit" class="pl-2 waves-effect waves-light"
+                                                        role="button" href="javascript:;"
+                                                        (click)="editMessage(message.id,message.status,message.comments)"><i
+                                                            class="mdi mdi-pencil-outline"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="pt-2 pb-2 d-flex" *ngIf="messages.length > 0">
+                                        <div class="pl-0">
+                                            {{ getPaginationWriteup(paginationData.rowLimit, paginationData.totalRows) }}
+                                        </div>
+                                        <div class="pl-0 ml-auto pr-3 mr-2">
+                                            <pagination [totalResultCount]="paginationData.totalRows"
+                                                [page-size]="paginationData.rowLimit"
+                                                (page-changed)="onPageChange($event)"></pagination>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end col -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <member-footer></member-footer>
+</div>

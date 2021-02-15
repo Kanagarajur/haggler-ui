@@ -1,0 +1,120 @@
+<div class="wrapper-page" style="max-width: 600px;margin-top: 35px;margin-bottom: 0;">
+    <div class="card overflow-hidden account-card mx-3" style="margin-bottom:0px;">
+        <div class="bg-primary p-4 text-white text-center position-relative">
+            <h4 class="font-20 m-b-5">New Register</h4>
+            <p class="text-white-50 mb-4">Get your Hagglr account now.</p>
+            <a href="#/public/registration" class="logo logo-admin"><img src="assets/images/fav-logo.png" height="24" alt="logo"></a>
+        </div>
+        <div class="account-card-content">
+            <ngb-alert *ngIf="alert.type !=''" [type]="alert.type" (close)="alert.type = ''">{{ alert.message }}
+            </ngb-alert>
+            <form [formGroup]="registrationForm" (ngSubmit)="registerNewUser()" class="form-horizontal m-t-30"
+                action="#">
+                <div class="social-auth-links text-center">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i
+                                    class="mdi mdi-facebook"></i> Sign up using Facebook</a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i
+                                    class="mdi mdi-google-plus"></i> Sign up using Google</a>
+                        </div>
+                        <div class="col-md-12">
+                            <p>- OR -</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="inputName">Username</label>
+                            <input type="text" class="form-control" name="username" placeholder="User Name"
+                                id="inputName" formControlName="inputName"
+                                [ngClass]="{ 'is-invalid': submitted && f.inputName.errors }">
+                            <div *ngIf="submitted && f.inputName.errors" class="invalid-feedback">
+                                <div *ngIf="f.inputName.errors.required">Please provide a valid name.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="inputPassword">Password</label>
+                            <input type="password" class="form-control" id="userpassword" placeholder="Enter password"
+                                formControlName="inputPassword"
+                                [ngClass]="{ 'is-invalid': submitted && f.inputPassword.errors }">
+                            <div *ngIf="submitted && f.inputPassword.errors" class="invalid-feedback">
+                                <div *ngIf="f.inputPassword.errors.required">Please provide a valid password.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="inputBusinessName">Business Name</label>
+                            <input type="text" class="form-control" name="businessname" placeholder="Business Name"
+                                id="inputBusinessName" formControlName="inputBusinessName"
+                                [ngClass]="{ 'is-invalid': submitted && f.inputBusinessName.errors }">
+                            <div *ngIf="submitted && f.inputBusinessName.errors" class="invalid-feedback">
+                                <div *ngIf="f.inputBusinessName.errors.required">Please provide a valid business name.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="inputBusinessEmail">Business Email</label>
+                            <input type="email" class="form-control" name="businessemail" placeholder="Business Email"
+                                id="inputBusinessEmail" formControlName="inputBusinessEmail"
+                                [ngClass]="{ 'is-invalid': submitted && f.inputBusinessEmail.errors }">
+                            <div *ngIf="submitted && f.inputBusinessEmail.errors" class="invalid-feedback">
+                                <div *ngIf="f.inputBusinessEmail.errors">Please provide a valid business email.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="inputBusinessPhone">Business Phone</label>
+                            <input type="text" class="form-control" name="businessphone" id="inputBusinessPhone"
+                                formControlName="inputBusinessPhone" placeholder="000-000-0000"
+                                [ngClass]="{ 'is-invalid': submitted && f.inputBusinessPhone.errors }">
+                            <div *ngIf="submitted && f.inputBusinessPhone.errors" class="invalid-feedback">
+                                <div *ngIf="f.inputBusinessPhone.errors">Please provide a valid phone number.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="inputBusinessZip">Business Zip Code</label>
+                            <input type="text" class="form-control" name="businesszipcode" id="inputBusinessZip"
+                                placeholder="Business Zip Code" formControlName="inputBusinessZip"
+                                [ngClass]="{ 'is-invalid': submitted && f.inputBusinessZip.errors }">
+                            <div *ngIf="submitted && f.inputBusinessZip.errors" class="invalid-feedback">
+                                <div *ngIf="f.inputBusinessZip.errors">Please provide a valid zip.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <p class="mb-0" style="font-size: small;">By registering you agree to the Hagglr <a href="#"
+                                    class="text-primary">Terms of Use</a></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group ">
+                            <button class="btn btn-primary w-md waves-effect waves-light"
+                                type="submit" formControlName="conditionCheck"
+                                [ngClass]="{ 'is-invalid': submitted && f.conditionCheck.errors }">Register</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="m-t-10 text-center">
+        <p>Already have an account ? <a routerLink="/public/login" class="font-500 text-primary actionLink">Login</a></p>
+        <p>© 2018 Hagglr, Inc</p>
+    </div>
+</div>

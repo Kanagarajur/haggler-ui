@@ -1,0 +1,78 @@
+<header id="header-wrap" class="public-pg" style="padding-bottom: 80px;"	>
+  <nav class="navbar navbar-expand-md bg-inverse fixed-top scrolling-navbar p-0">
+    <div class="top-header">
+      <div class="container-fluid shadow-effect">
+        <a routerLink="/member/dashboard" class="navbar-brand"><img src="assets/images/hagglr-ai-logo.png" alt="" style="width: 205px;"	></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+          aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="lni-menu"></i>
+        </button>
+        <div class="collapse navbar-collapse pg-nav" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto w-100 justify-content-end clearfix">
+             <li class="nav-item" [ngClass]="activePage === 'dashboard' ? 'active' : ''">
+                        <a routerLink="/member/dashboard" class="nav-link waves-effect">
+                            <i class="mdi mdi-home"></i>Dashboard
+                            <span class="sr-only" *ngIf="activePage === 'dashboard'">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" [ngClass]="activePage === 'dealbuilder' ? 'active' : ''">
+                        <a routerLink="/member/dealbuilder" class="nav-link waves-effect">
+                            <i class="mdi mdi-thumb-up"></i> Deal Builder
+                            <span class="sr-only" *ngIf="activePage === 'dealbuilder'">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" [ngClass]="activePage === 'admin' ? 'active' : ''" *ngIf="isAdmin">
+                        <a routerLink="/member/admin" class="nav-link waves-effect">
+                            <i class="mdi mdi-account-search"></i> Manage User
+                            <span class="sr-only" *ngIf="activePage === 'admin'">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" [ngClass]="activePage === 'messages' ? 'active' : ''" *ngIf="isAdmin">
+                        <a routerLink="/member/messages" class="nav-link waves-effect">
+                            <i class="mdi mdi-message"></i> Leads
+                            <span class="sr-only" *ngIf="activePage === 'messages'">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item d-sm-block d-md-none" [ngClass]="activePage === 'profile' || activePage === 'updateProfile' ? 'active' : ''">
+                        <a routerLink="/member/profile" class="nav-link waves-effect"><i
+                            class="mdi mdi-account-circle"></i>Profile</a>
+                    </li>
+                    <li class="nav-item d-sm-block d-md-none">
+                        <a href="#" (click)="logout()" class="nav-link waves-effect"><i
+                            class="mdi mdi-power"></i>Logout</a>
+                    </li>
+          </ul>
+        </div>
+
+<div class="my-2 my-lg-0 d-none d-sm-none d-md-block d-lg-block d-xl-block">
+                <nav class="navbar-custom">
+                    <ul class="navbar-right mb-0">
+                        <li class="dropdown notification-list list-inline-item">
+                            <div class="dropdown notification-list nav-pro-img">
+                                <a class="dropdown-toggle nav-link arrow-none waves-effect nav-user"
+                                    data-toggle="dropdown" href="#" role="button" aria-haspopup="false"
+                                    aria-expanded="false">
+                                    <img *ngIf="userProfile.imageURL" [src]="userProfile.imageURL" alt="user"
+                                        class="rounded-circle" style="margin-top: 2px;">
+                                </a>
+                                <div class="dropdown-menu-custom dropdown-menu-right profile-dropdown">
+                                    <a class="dropdown-item" routerLink="/member/profile"><i
+                                            class="mdi mdi-account-circle m-r-5"></i>
+                                        Profile</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item text-danger cursor-pointer" (click)="logout()"><i
+                                            class="mdi mdi-power text-danger"></i>
+                                        Logout</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+
+
+      </div>
+    </div>
+  </nav>
+</header>

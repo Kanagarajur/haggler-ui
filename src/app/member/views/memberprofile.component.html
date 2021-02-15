@@ -1,0 +1,123 @@
+<div id="wrapper" style="overflow: auto;">
+    <member-header></member-header>
+    <div class="content-page">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="page-title-box">
+                    <div class="row align-items-center">
+                        <div class="col-sm-6">
+                            <h4 class="page-title">Profile</h4>
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a routerLink="/member/dashboard">Dashboard</a></li>
+                                <li class="breadcrumb-item active">Profile</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="profData">
+                    <div class="col-xl-4 col-md-4">
+                        <div class="card directory-card profile-form">
+                            <div class="card-body text-center">
+                                <div class="prof-edit-btn">
+                                    <img *ngIf="imageURL" [src]="imageURL" alt=""
+                                        class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                                    <a routerLink="/member/updateProfile" data-toggle="tooltip" data-placement="top" title=""
+                                        data-original-title="Edit Profile"><i class="fas fa-user-edit"></i></a>
+                                </div>
+                                <hr>
+                                <h6 class="text-primary font-16 mt-10 mb-10">{{profData.businessName}}</h6>
+                                <p class="font-14 mt-10 mb-2"><i class="mdi mdi-phone font-18"></i> {{profData.phone}}</p>
+                                <p class="mb-4"><i class="fa fa-globe-americas"></i> {{profData.businessUrl}}</p>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-8 col-md-8">
+                        <div class="card directory-card profile-form">
+                            <div class="card-body">
+                                <div class="prof-edit-btn">
+                                    <a routerLink="/member/updateProfile" data-toggle="tooltip" data-placement="top" title=""
+                                    data-original-title="Edit Profile" style="z-index: 100;"><i class="fas fa-user-edit"></i></a>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="dealname" class="col-lg-2 col-form-label"><i
+                                                    class="fa fa-tag"></i></label>
+                                            <div class="col-lg-10">
+                                                <label for="Discount">Business Category</label>
+                                                <div>{{catgDisplayName | titlecase}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="dealname" class="col-lg-2 col-form-label"><i
+                                                    class="fa fa-list"></i></label>
+                                            <div class="col-lg-10">
+                                                <label for="Discount">Business Sub Category</label>
+                                                <div>{{subCatgDisplayName | titlecase}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group row">
+                                            <label for="dealname" class="col-lg-1 col-form-label"><i
+                                                    class="fa fa-map-marker"></i></label>
+                                            <div class="col-lg-10">
+                                                <label for="Discount">Address</label>
+                                                <div>{{profData.streetAddress}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="dealname" class="col-lg-2 col-form-label"><i
+                                                    class="fa fa-envelope"></i></label>
+                                            <div class="col-lg-10">
+                                                <label for="Discount">Zipcode</label>
+                                                <div>{{profData.zipCode}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="dealname" class="col-lg-2 col-form-label"><i
+                                                    class="fa fa-map-signs"></i></label>
+                                            <div class="col-lg-10">
+                                                <label for="Discount">City</label>
+                                                <div>{{profData.city}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="dealname" class="col-lg-2 col-form-label"><i
+                                                    class="fa fa-map-marked-alt"></i></label>
+                                            <div class="col-lg-10">
+                                                <label for="Discount">State</label>
+                                                <div>{{profData.state}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="dealname" class="col-lg-2 col-form-label"><i
+                                                    class="fa fa-globe-americas"></i></label>
+                                            <div class="col-lg-10">
+                                                <label for="Discount">Email</label>
+                                                <div>{{profData.emailAddress}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <member-footer></member-footer>
+</div>

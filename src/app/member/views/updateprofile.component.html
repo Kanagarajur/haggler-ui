@@ -1,0 +1,330 @@
+<div id="wrapper" style="overflow: auto;">
+    <member-header></member-header>
+    <div class="content-page">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="page-title-box">
+                    <div class="row align-items-center">
+                        <div class="col-sm-6">
+                            <h4 class="page-title">Profile</h4>
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a routerLink="/member/dashboard">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a routerLink="/member/profile">Profile</a></li>
+                                <li class="breadcrumb-item active">Update</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <ngb-alert *ngIf="alert.type !=''" [type]="alert.type" (close)="alert.type =''">{{ alert.message }}
+                </ngb-alert>
+                <form id="form-horizontal" class="form-horizontal form-wizard-wrapper" [formGroup]="profileForm"
+                    (ngSubmit)="onSubmit()">
+                    <div class="row">
+                        <div class="col-xl-4 col-md-4">
+                            <div class="card directory-card profile-form">
+                                <div class="card-body text-center">
+                                    <div #profileImg>
+                                        <img *ngIf="userProfileData && userProfileData.imageURL" [src]="userProfileData.imageURL" id="prvwpic" alt="" class="img-fluid img-thumbnail rounded-circle thumb-lg">
+                                    </div><br>
+                                    <hr><br>
+                                    <div class="form-group">
+                                        <label for="fileup">Change Business Logo</label>
+                                        <div class="form-group"><!-- (change)="upload($event.target.files)"-->
+                                            <input id="fileup" type="file" class="filestyle profile-file-input"
+                                                data-buttonname="btn-secondary" #file (change)="preview(file.files)">
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-8 col-md-8">
+                            <div class="card directory-card profile-form">
+                                <div class="card-body">
+                                    <div class="row"> <!-- row start -->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="inputBusinessName">Business Name</label>
+                                                <input type="text" class="form-control" id="inputBusinessName"
+                                                    formControlName="businessName" [ngClass]="{ 'is-invalid': submitted && f.businessName.errors }">
+                                                <div *ngIf="submitted && f.businessName.errors"
+                                                    class="invalid-feedback">
+                                                    <div *ngIf="f.businessName.errors.required">Please provide a valid
+                                                        business name.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!-- row end -->
+                                  <div class="row"><!-- row start -->
+
+                                        <div class="col-md-6">
+                                            <!-- <div class="form-group">
+                                                <label for="inputName">Name</label>
+                                                <input type="text" class="form-control" id="inputName"
+                                                    formControlName="propName"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.propName.errors }">
+                                                <div *ngIf="submitted && f.propName.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.propName.errors.required">Please provide a valid name.
+                                                    </div>
+                                                </div>
+                                            </div> -->
+
+                                            <div class="form-group">
+                                                <label for="inputCategory">Business Category</label>
+                                                <select class="form-control p-1" id="inputCategory"
+                                                    formControlName="businessCatg"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.businessCatg.errors }"
+                                                    (change)="loadSubCatg()">
+                                                    <option selected>Choose your option</option>
+                                                    <option [value]="catg.name"
+                                                        *ngFor="let catg of categories; trackBy: trackByFn">
+                                                        {{catg.displayName | titlecase}}</option>
+                                                </select>
+                                                <div *ngIf="submitted && f.businessCatg.errors"
+                                                    class="invalid-feedback">
+                                                    <div *ngIf="f.businessCatg.errors.required">Please provide a valid
+                                                        category.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="inputSubCategory">Business Sub Category</label>
+                                                <select class="form-control p-1" id="inputSubCategory"
+                                                    formControlName="businessSubCatg"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.businessSubCatg.errors }">
+                                                    <option selected>Choose your option</option>
+                                                    <option [value]="subCatg.name"
+                                                        *ngFor="let subCatg of subcategories; trackBy: trackByFn">
+                                                        {{subCatg.displayName | titlecase}}</option>
+                                                </select>
+                                                <div *ngIf="submitted && f.businessSubCatg.errors"
+                                                    class="invalid-feedback">
+                                                    <div *ngIf="f.businessSubCatg.errors.required">Please provide a
+                                                        valid sub category.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                  </div><!-- row end -->
+                                  <div class="row"><!-- row start -->
+                                      <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="inputBusinessPhone">Phone Number</label>
+                                                <input type="text" class="form-control" id="inputBusinessPhone"
+                                                    formControlName="businessPhoneNumber" data-phone-input-format-dir [actualValue]='f.businessPhoneNumber.value' [ngClass]="{ 'is-invalid': submitted && f.businessPhoneNumber.errors }">
+                                                <div *ngIf="submitted && f.businessPhoneNumber.errors"
+                                                    class="invalid-feedback">
+                                                    <div *ngIf="f.businessPhoneNumber.errors.required">Please provide a
+                                                        valid phone number.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                      <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="inputWebUrl">Business URL</label>
+                                                <input type="text" class="form-control" id="inputWebUrl"
+                                                    formControlName="businessWebUrl"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.businessWebUrl.errors }"
+                                                    placeholder="http://domain.com">
+                                                <div *ngIf="submitted && f.businessWebUrl.errors"
+                                                    class="invalid-feedback">
+                                                    <div *ngIf="f.businessWebUrl.errors.required">Please provide a valid
+                                                        website URL.Try http(s)://domain.com </div>
+                                                </div>
+                                            </div>
+                                      </div>
+                                    </div><!-- row end -->
+                                  <div class="row">
+                                      <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="inputAddress">Address</label>
+                                                <input type="text" class="form-control" id="inputAddress"
+                                                    formControlName="inputAddress"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.inputAddress.errors }">
+                                                <div *ngIf="submitted && f.inputAddress.errors"
+                                                    class="invalid-feedback">
+                                                    <div *ngIf="f.inputAddress.errors.required">Please provide a valid
+                                                        address.</div>
+                                                </div>
+                                            </div>
+                                      </div>
+                                      </div><div class="row"> <!-- row start -->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="inputZip">Zipcode</label>
+                                                <input type="text" class="form-control" id="inputZip"
+                                                    formControlName="inputZip"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.inputZip.errors }">
+                                                <div *ngIf="submitted && f.inputZip.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.inputZip.errors.required">Please provide a valid zip.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="inputCity">City</label>
+                                                <input type="text" class="form-control" id="inputCity"
+                                                    formControlName="inputCity"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.inputCity.errors }">
+                                                <div *ngIf="submitted && f.inputCity.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.inputCity.errors.required">Please provide a valid
+                                                        city.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                      </div> <!-- row end -->
+                                      <div class="row"> <!-- row start -->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="inputState">State</label>
+                                                <input type="text" class="form-control" id="inputState"
+                                                    formControlName="inputState"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.inputState.errors }">
+                                                <div *ngIf="submitted && f.inputState.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.inputState.errors.required">Please provide a valid
+                                                        state.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="inputCountry">Country</label>
+                                                <input type="text" class="form-control" id="inputCountry"
+                                                    formControlName="inputCountry"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.inputCountry.errors }">
+                                                <div *ngIf="submitted && f.inputCountry.errors"
+                                                    class="invalid-feedback">
+                                                    <div *ngIf="f.inputCountry.errors.required">Please provide a valid
+                                                        country.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                      </div> <!-- row end -->
+                                  <div class="row"> <!-- row start -->
+                                          <!-- delivery options start  -->
+                                      <div class="col-md-8">
+                                          <ng-container class="col-md-8 no-padding" *ngIf="deliveryView">
+                                            <!-- deliveryView start here-->
+                                            <div class="card-body ">
+                                              <div class="row"><!-- ROW start(visible delivery) -->
+
+                                                <div class="col-md-4">
+                                                  <div class="form-group">
+                                                    <label for="inputDeliveryOpt">Delivery Options</label>
+                                                    <select class="form-control p-1" id="inputDeliveryOpt"
+                                                            formControlName="deliveryOpt"
+                                                            [ngClass]="{ 'is-invalid': submitted && f.deliveryOpt.errors }">
+                                                      <option selected>Choose your option </option>
+                                                      <option [value]="opt.id"
+                                                              *ngFor="let opt of deliveryOptions; trackBy: trackByFn">
+                                                        {{opt.name | titlecase}}</option>
+                                                    </select>
+                                                    <div *ngIf="submitted && f.deliveryOpt.errors"
+                                                         class="invalid-feedback">
+                                                      <div *ngIf="f.deliveryOpt.errors.required">Please provide a valid
+                                                        delivery option.</div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                  <div class="form-group">
+                                                    <label for="inputDeliveryUrl">Website url:</label>
+                                                    <input type="text" class="form-control" id="inputDeliveryUrl"
+                                                           formControlName="bussinessDeliveryUrl"
+                                                           [ngClass]="{ 'is-invalid': submitted && f.bussinessDeliveryUrl.errors }">
+                                                    <div *ngIf="submitted && f.bussinessDeliveryUrl.errors"
+                                                         class="invalid-feedback">
+                                                      <div *ngIf="f.bussinessDeliveryUrl.errors.required">Please provide a
+                                                        valid site url.</div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                  <div class="form-group">
+                                                    <div style="position: absolute;left: 10px;">
+                                                      &nbsp;<BR>
+                                                      <button type="button"
+                                                              class="btn btn-primary waves-effect waves-light mr-1" (click)="addDeliveryOption()">Add</button>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div><!-- ROW end(visible delivery) -->
+                                              <!-- selected delivery options display start if any -->
+                                              <ng-container class="col-md-8 no-padding" *ngIf="showDeliveryList">
+
+                                              <div class="row"> <!--ROW start (delivery option) -->
+                                                   <div class="col-md-12">
+                                                      <table width="100%" style="border: 1px solid gray;" >
+
+                                                        <tr  align=center  style="border: 1px dotted black;">
+                                                          <th>Sl.No</th>
+                                                           <th align=center>Id</th>
+                                                            <th align=center>Delivery Name</th>
+                                                          <th align=center>Delivery url</th>
+                                                          <th>Remove</th>
+                                                        </tr>
+
+                                                        <tr style="height:25px" *ngFor="let bisdelivOpt of businessDeliveryOptions;let i = index">
+                                                            <td align="center" width="5%">{{i+1}}. </td>
+                                                             <td align="center" width="8%">{{bisdelivOpt.id}}</td>
+                                                            <td width="15%">{{bisdelivOpt.name}}</td>
+                                                            <td>{{bisdelivOpt.siteUrl}}</td>
+                                                          <td align="center" width="5%"><img alt="" id="delDelvOpt" width="35px" height="30px" src="assets/images/delete.png" (click)="deleteDeliveryOption(bisdelivOpt.id)"></td>
+                                                        </tr>
+                                                      </table>
+                                                  </div>
+                                              </div><!--ROW end (delivery option) -->
+
+                                            </ng-container>
+                                            <ng-container class="col-md-8 no-padding" *ngIf="!showDeliveryList">
+                                                <div class="row"> <!-- ROW start(no delivery list) -->
+                                                <div class="col-md-12">
+                                                  <div class="from-group">
+                                                    Delivery options not provided yet.
+                                                  </div>
+                                                </div>
+                                                </div><!-- ROW end(no delivery list) -->
+                                            </ng-container>
+                                              <!-- selected delivery options display end-->
+
+                                              <!-- deliveryView end here-->
+                                          </ng-container>
+                                          <!-- delivery options end  -->
+                                      </div>
+                                      <div class="col-md-4">
+                                            <!-- <div class="float-right">
+                                                <button type="submit"
+                                                    class="btn btn-primary waves-effect waves-light mr-1">
+                                                    {{ (PaymentID == null || PaymentID=='')  ? 'Submit & Subscribe' : 'Submit' }}</button>
+                                                <button type="reset" (click)="goback();"
+                                                    class="btn btn-secondary waves-effect">Cancel</button>
+                                                <div *ngIf="PaymentID!='' && PaymentID!=null" style="padding-top:15px;">
+                                                    <div class="clear"></div>
+                                                    <a (click)="goCancel()" style="color: #b1b1bb;text-decoration: underline;cursor: pointer;">cancel paypal
+                                                        subscription</a>
+                                                </div>
+                                            </div> -->
+                                            <div class="float-right">
+                                                <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">Submit</button>
+                                                <button type="reset" (click)="goback();" class="btn btn-secondary waves-effect">Cancel</button>
+                                                    <div *ngIf="PaymentID!='' && PaymentID!=null" style="padding-top:15px;">
+                                                        <div class="clear"></div>
+                                                        <a (click)="goCancel()" style="color: #b1b1bb;text-decoration: underline;cursor: pointer;">cancel paypal free
+                                                            subscription</a>
+                                                    </div>
+                                            </div>
+                                      </div>
+                                  </div><!-- row end  -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <member-footer></member-footer>
+</div>

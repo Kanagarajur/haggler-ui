@@ -1,0 +1,111 @@
+<div id="wrapper" style="overflow: auto;">
+    <member-header></member-header>
+    <div class="content-page">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="page-title-box">
+                    <div class="row align-items-center">
+                        <div class="col-sm-6">
+                            <h4 class="page-title">Manage User</h4>
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a routerLink="/member/dashboard">Dashboard</a></li>
+                                <li class="breadcrumb-item active">Manage User</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <ngb-alert *ngIf="alert.type !=''" [type]="alert.type" (close)="alert.type =''">
+                            {{ alert.message }}
+                        </ngb-alert>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row m-0">
+                                    <div class="col-auto mr-auto p-0">
+                                        <h4 class="mt-0 header-title">Business Users</h4>
+                                    </div>
+                                </div>
+                                <ngb-alert *ngIf="busUsers.length == 0" type="warning">No users found</ngb-alert>
+                                <table id="datatable-buttons" *ngIf="busUsers.length > 0"
+                                    class="table table-striped table-bordered dt-responsive nowrap"
+                                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th class="cursor-pointer" (click)="sortData('businessName')">Businss Name <i
+                                                    class="fas ml-2"
+                                                    [ngClass]="(sortBy ==='businessName' ? sortDirClass : 'fa-sort')"></i>
+                                            </th>
+                                            <th class="cursor-pointer" (click)="sortData('phone')">Phone Number
+                                                <i class="fas ml-2"
+                                                    [ngClass]="(sortBy ==='phone' ? sortDirClass : 'fa-sort')"></i>
+                                            </th>
+                                            <th class="cursor-pointer" (click)="sortData('emailAddress')">Email
+                                                Address <i class="fas ml-2"
+                                                    [ngClass]="(sortBy ==='emailAddress' ? sortDirClass : 'fa-sort')"></i>
+                                            </th>
+                                            <th class="cursor-pointer" (click)="sortData('category')">Category<i
+                                                    class="fas ml-2"
+                                                    [ngClass]="(sortBy ==='category' ? sortDirClass : 'fa-sort')"></i>
+                                            </th>
+                                            <th class="cursor-pointer" (click)="sortData('subCategory')">Sub Category
+                                                <i class="fas ml-2"
+                                                    [ngClass]="(sortBy ==='subCategory' ? sortDirClass : 'fa-sort')"></i>
+                                            </th>
+                                            <th class="cursor-pointer" (click)="sortData('city')">City
+                                                <i class="fas ml-2"
+                                                    [ngClass]="(sortBy ==='city' ? sortDirClass : 'fa-sort')"></i>
+                                            </th>
+                                            <th class="cursor-pointer" (click)="sortData('zipCode')">Zipcode
+                                                <i class="fas ml-2"
+                                                    [ngClass]="(sortBy ==='zipCode' ? sortDirClass : 'fa-sort')"></i>
+                                            </th>
+                                            <th class="cursor-pointer" (click)="sortData('state')">State
+                                                <i class="fas ml-2"
+                                                    [ngClass]="(sortBy ==='state' ? sortDirClass : 'fa-sort')"></i>
+                                            </th>
+                                            <th width="10%">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let bus of busUsers; let i = index"
+                                            [ngClass]="{'dealSelected': selectedRow == bus.businessId }">
+                                            <td>{{bus.businessName}}</td>
+                                            <td>{{bus.phone}}</td>
+                                            <td>{{bus.emailAddress}}</td>
+                                            <td>{{bus.category}}</td>
+                                            <td>{{bus.subCategory}}</td>
+                                            <td>{{bus.city}}</td>
+                                            <td>{{bus.zipCode}}</td>
+                                            <td>{{bus.state}}</td>
+                                            <td>
+                                                <span class="custom-control custom-switch text-center" style="display:inline-block;">
+                                                    <input type="checkbox" class="custom-control-input pointer"
+                                                       
+                                                        [id]="'customSwitch'+i" [checked]="bus.status === 'Active'">
+                                                    <label class="custom-control-label"
+                                                        [for]="'customSwitch'+i"></label>
+                                                </span>    
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="pt-2 pb-2 d-flex" *ngIf="busUsers.length > 0">
+                                    <div class="pl-0">
+                                        {{ getPaginationWriteup(paginationData.rowLimit, paginationData.totalRows) }}
+                                    </div>
+                                    <div class="pl-0 ml-auto pr-3 mr-2">
+                                        <pagination [totalResultCount]="paginationData.totalRows"
+                                            [page-size]="paginationData.rowLimit" (page-changed)="onPageChange($event)">
+                                        </pagination>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

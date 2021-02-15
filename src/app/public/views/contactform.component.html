@@ -1,0 +1,133 @@
+
+<section id="Contact-Us" class="contact-us">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 vcontact-box">	
+                <br/>
+                <p>Contact our sales team</p>
+                <h1>Join the millions and promote <span>your business</span></h1>
+                <p>Our team is happy to answer your sales questions. Fill out the form and we'll be in touch as soon as possible.</p><br>
+                <p>
+                    Please drop an email<br>
+                    <a href="mailto:test@mail.com">support@hagglr.ai</a>
+                </p><br>
+                <p>
+                    Feel like calling<br>
+                    <a href="tel:+5 2658 9856">+1 925-237-1069</a>
+                </p>
+            </div>
+            <div class="col-md-4">
+                <div class="contact-us-form">
+                    <h1>Get In <span>Touch</span></h1>
+                    <ngb-alert *ngIf="alert.type!=''" [type]="alert.type" [dismissible]="false"> {{ alert.message }} </ngb-alert>
+                    <!-- contact form start here -->
+                    <form id="form-contact" [formGroup]="contactForm" #formDirective="ngForm" (ngSubmit)="onSubmit(contactForm,formDirective)">									
+                        <input type="text" id="inputContactFName" formControlName="contactFName" [ngClass]="{ 'is-invalid': submitted && f.contactFName.errors }" placeholder="Name" required="">
+                        <div *ngIf="submitted && f.contactFName.errors" class="invalid-feedback">
+                            <div *ngIf="f.contactFName.errors.required">Please provide a valid contact name.</div>
+                        </div>
+                        <input type="text" id="inputContactPhone" formControlName="contactPhoneNumber" data-phone-input-format-dir [actualValue]='f.contactPhoneNumber.value' [ngClass]="{ 'is-invalid': submitted && f.contactPhoneNumber.errors }" placeholder="Phone" required="">
+                        <div *ngIf="submitted && f.contactPhoneNumber.errors" class="invalid-feedback">
+                            <div *ngIf="f.contactPhoneNumber.errors.required">Please provide a valid phone number.
+                            </div>
+                        </div>
+                        <input type="text" id="inputContactEmail" formControlName="contactEmail" [ngClass]="{ 'is-invalid': submitted && f.contactEmail.errors }" placeholder="Email" required="">
+                        <div *ngIf="submitted && f.contactEmail.errors" class="invalid-feedback">
+                            <div *ngIf="f.contactEmail.errors.required">Please provide a contact email.</div>
+                            <div *ngIf="f.contactEmail.errors.email">Email must be a valid email address</div>
+                        </div>
+                        <textarea id="inputContactProjectDesc" formControlName="contactProjectDesc" [ngClass]="{ 'is-invalid': submitted && f.contactProjectDesc.errors }" placeholder="Comments" required=""></textarea>
+                        <div *ngIf="submitted && f.contactProjectDesc.errors" class="invalid-feedback">
+                            <div *ngIf="f.contactProjectDesc.errors.required">Please provide a project description.</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                    <!-- contact form end here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--
+    <section id="contact" class="section-padding bg-white">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2 class="section-title wow fadeInDown" data-wow-delay="0.3s">Contact Us</h2>
+            <div class="shape wow fadeInDown" data-wow-delay="0.3s"></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <h2 class="head-title">Join the millions and promote your business</h2>
+                <h4 class="contact-text-black">Contact our sales team</h4>
+                <p class="color-585858 pb-4">
+                    Our team is happy to answer your sales questions. Fill out the form and we'll be in touch as soon as possible.
+                </p>
+                <div class="color-585858">Please drop an email</div>
+                <div class="contact-email">support@hagglr.ai</div>
+                <div class="color-585858">Feel like calling</div>
+                <div class="contact-phoneno pb-2">+1 (925) 785-3078</div>
+               
+
+            </div>
+            <div class="col-lg-6 padding-form pt-4">
+                <ngb-alert *ngIf="alert.type!=''" [type]="alert.type" [dismissible]="false">{{ alert.message }}
+                </ngb-alert>
+                <form id="form-contact" [formGroup]="contactForm" #formDirective="ngForm"
+                    (ngSubmit)="onSubmit(contactForm,formDirective)">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Your First Name" id="inputContactFName"
+                            formControlName="contactFName"
+                            [ngClass]="{ 'is-invalid': submitted && f.contactFName.errors }">
+                        <div *ngIf="submitted && f.contactFName.errors" class="invalid-feedback">
+                            <div *ngIf="f.contactFName.errors.required">Please provide a valid
+                                contact firstname.</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Your Last Name" id="inputContactLName"
+                            formControlName="contactLName"
+                            [ngClass]="{ 'is-invalid': submitted && f.contactLName.errors }">
+                        <div *ngIf="submitted && f.contactLName.errors" class="invalid-feedback">
+                            <div *ngIf="f.contactLName.errors.required">Please provide a valid
+                                contact lastname.</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="inputContactPhone" placeholder="Phone Number"
+                            formControlName="contactPhoneNumber" data-phone-input-format-dir
+                            [actualValue]='f.contactPhoneNumber.value'
+                            [ngClass]="{ 'is-invalid': submitted && f.contactPhoneNumber.errors }">
+                        <div *ngIf="submitted && f.contactPhoneNumber.errors" class="invalid-feedback">
+                            <div *ngIf="f.contactPhoneNumber.errors.required">Please provide a
+                                valid phone number.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="E-mail" id="inputContactEmail"
+                            formControlName="contactEmail"
+                            [ngClass]="{ 'is-invalid': submitted && f.contactEmail.errors }">
+                        <div *ngIf="submitted && f.contactEmail.errors" class="invalid-feedback">
+                            <div *ngIf="f.contactEmail.errors.required">Please provide a
+                                contact email.</div>
+                            <div *ngIf="f.contactEmail.errors.email">Email must be a valid email address</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="8" placeholder="Type your questions."
+                            id="inputContactProjectDesc" formControlName="contactProjectDesc"
+                            [ngClass]="{ 'is-invalid': submitted && f.contactProjectDesc.errors }"></textarea>
+                        <div *ngIf="submitted && f.contactProjectDesc.errors" class="invalid-feedback">
+                            <div *ngIf="f.contactProjectDesc.errors.required">Please provide a
+                                project description.</div>
+                        </div>
+
+                    </div>
+                    <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+-->

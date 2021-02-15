@@ -1,0 +1,29 @@
+.contact-text-black
+{
+    color: black;
+    padding-bottom: 20px;
+}
+
+.contact-email{
+    font-size: 16px;
+    font-weight: bold;
+    padding-bottom: 20px;
+    color:#1998d5;
+}
+
+.contact-phoneno{
+    font-size: 16px;
+    font-weight: bold;
+    color:#1998d5;
+}
+.padding-form
+{
+    xpadding-top:130px;
+}
+h1{
+    text-shadow: none;
+}
+.contact-icon {
+    font-size:18px; 
+    margin-right: 10px;
+}

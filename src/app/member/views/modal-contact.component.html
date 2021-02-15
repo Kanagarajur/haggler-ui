@@ -1,0 +1,28 @@
+<div class="modal-header">
+    <h4 class="modal-title">Update Your Comments</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">    
+    <div class="container">
+        <div class="row">           
+            <form id="form-message" [formGroup]="messageForm" #formDirective="ngForm"
+            (ngSubmit)="updateStatus()">
+                <div class="form-group">
+                        <textarea class="form-control" id="inputMessageComments" rows="3" formControlName="messageComments" [ngClass]="{ 'is-invalid': submitted && f.messageComments.errors }"></textarea>
+                        <div *ngIf="submitted && f.messageComments.errors" class="invalid-feedback">
+                            <div *ngIf="f.messageComments.errors.required">Please provide a valid
+                                comments.</div>
+                        </div>
+                </div>
+                <div style="text-align: center;width: 500px;padding:0 110px;">
+                <ngb-alert *ngIf="alert.type!=''" [type]="alert.type" style="width: 100%">{{ alert.message }}</ngb-alert>
+            </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="updateStatus()">Update</button>
+        <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+    </div>

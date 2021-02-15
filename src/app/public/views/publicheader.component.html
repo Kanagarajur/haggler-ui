@@ -1,0 +1,41 @@
+<header id="header-wrap" class="public-pg">
+  <nav class="navbar navbar-expand-md bg-inverse fixed-top scrolling-navbar p-0">
+    <div class="top-header">
+      <div class="container shadow-effect">
+        <a routerLink="/public" class="navbar-brand"><img src="assets/images/logo.png" alt="logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+          aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="lni-menu"></i>
+        </button>
+        <div class="collapse navbar-collapse pg-nav" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto w-100 justify-content-end clearfix">
+            <li class="nav-item" [class.active]="isHome">
+              <a class="nav-link" routerLink="/public">Home</a>
+            </li>
+            <li class="nav-item" *ngIf="isHome">
+              <a class="nav-link" href="#howitworks">How it Works</a>
+            </li>
+			  <li class="nav-item" *ngIf="!isHome">
+              <a class="nav-link" href="#public?s=howitworks">How it Works</a>
+            </li>
+            <li class="nav-item" [class.active]="urlStr === 'pricing'">
+              <a class="nav-link" routerLink="#/pricing">Pricing</a>
+            </li>
+            <li class="nav-item" *ngIf="isHome">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item" *ngIf="!isHome">
+              <a class="nav-link" href="#public?s=contact">Contact</a>
+            </li>
+            <li class="nav-item" [class.active]="urlStr === 'registration'" >
+              <a class="nav-link" routerLink="/public/registration">Business Sign-up</a>
+            </li>
+            <li class="nav-item" [class.active]="urlStr === 'login'" >
+              <a class="nav-link" routerLink="/public/login">Business Sign-in</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
